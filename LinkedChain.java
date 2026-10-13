@@ -56,6 +56,36 @@ public class LinkedChain<T>
         numberOfEntries++;
         return true;
     }
+/**
+ * Adds a new entry to this chain at the given position.
+ * Entries originally at that position and beyond are shifted one position
+ * @param index
+ * @param newEntry
+ * @return
+ */
+    public boolean add(int index, T newEntry)
+    {
+        requireNonNull(newEntry);
+        if (index < 0 || index > numberOfEntries)
+        {
+            throw new IndexOutOfBoundsException(
+                "Index " + index + " out of bounds for size "
+                + numberOfEntries);
+        }
+        if (index == 0)
+        {
+            return add(newEntry);
+        }
+        Node<T> previous = firstNode;
+        for (int i = 1; i < index; i++)
+        {
+            previous = previous.next;
+        }
+        Node<T> newNode = new Node<T>(newEntry, previous.next);
+        previous.next = newNode;
+        numberOfEntries++;
+        return true;
+    }
 
     /**
      * Adds a new entry to the end of this chain.
