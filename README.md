@@ -1,2 +1,125 @@
-# cs2114-project2
-A playlist that allows users to interact with a queue made with a linked list
+## How to Run
+
+The project was developed and tested using Eclipse IDE with Java 17.
+
+**Running the Application**
+1. Open the project in Eclipse.
+2. Make sure `LinkedChain.java`, `Song.java`, `Podcast.java`, and `Listener.java` are included in the project.
+3. Open `Listener.java`.
+4. Right-click and select `Run As > Java Application`.
+5. Use the console menu to add songs or podcasts, view the queue, remove items, and play the next item.
+
+**Running the Tests**
+1. Make sure the CS2-Support library containing `student.TestCase` is included in the project's build path.
+2. Open `ListenerTest.java`.
+3. Right-click and select `Run As > JUnit Test`.
+4. Check the JUnit results for errors or failures.
+
+The Listener tests were executed in Eclipse, and all 18 tests passed with 0 errors and 0 failures.
+
+## Reflection
+
+### Listener Implementation — Seongjin Nam
+
+My main responsibility for Deliverable 3 was implementing the `Listener` class, handling user input, and writing tests for its functionality.
+
+In our original specification, the Listener class was responsible for collecting user input and connecting the menu to the queue. During implementation, I added a `Scanner` field, a `LinkedChain<Object>` field, and a boolean variable to control the menu loop.
+
+I implemented all eight menu options, including creating a new queue, adding songs and podcasts, inserting items at a specific position, removing items, viewing the queue, playing the next item, and quitting the program.
+
+One difference from our specification is that the current prototype stores a `LinkedChain<Object>` directly inside Listener instead of using a separate Queue wrapper. This made it easier to connect the console menu to the storage methods for our prototype. We still need to discuss whether to introduce the separate Queue class for the final version.
+
+I also implemented input validation in Listener, as planned in our specification. The program asks the user to try again when they enter an invalid menu option, an empty title, an invalid media length, or an invalid position. It also handles text entered where a number is expected.
+
+I used GenAI assistance while developing and reviewing the Listener implementation and its tests. I then integrated the code into Eclipse, ran the application, and checked the test results.
+
+### LinkedChain Changes
+
+I did not directly modify the internal node structure of `LinkedChain.java`.
+
+The Listener class uses the public methods provided by LinkedChain, including `add()`, `remove()`, `get()`, `size()`, `isEmpty()`, and `toArray()`.
+
+For position-based insertion, Listener uses the available `add(index, item)` method. For removing an item at a specific position, I used the public LinkedChain methods and a temporary chain to preserve the order of the remaining items.
+
+### Unknowns and Challenges
+
+One challenge from our original scope was figuring out how to insert and remove media at specific positions without breaking the linked list.
+
+I handled this by using LinkedChain's public methods instead of directly accessing its nodes.
+
+Another question was how to simulate playing media. I implemented the `play()` method so that it removes the first item from the queue and returns a message showing which item is being played.
+
+We also needed to decide how Listener should manage user input. I separated input validation into helper methods so that the menu code would be easier to organize.
+
+Searching for and editing an existing Song or Podcast is still something we need to work on if we include editing in the final version.
+
+### Testing and Current Limitations
+
+I created `ListenerTest.java` to test normal behavior and invalid input.
+
+The tests cover:
+- Creating and resetting a queue.
+- Adding songs and podcasts.
+- Rejecting null or unsupported objects.
+- Removing existing and nonexistent items.
+- Playing media from a nonempty or empty queue.
+- Handling invalid menu selections.
+- Rejecting invalid song and podcast information.
+- Inserting and removing items at specific positions.
+- Handling duplicate song titles during removal.
+- Handling incomplete user input.
+- Starting and quitting the program.
+
+All 18 Listener tests passed in Eclipse.
+
+The current Listener prototype supports the main menu features, but it does not yet support editing existing media items, swapping songs, repeating songs, or handling audiobooks. The separate Queue class from our specification also has not been integrated into this implementation.
+
+## Next Steps
+
+### Listener Development — Seongjin Nam
+
+My remaining work for the final project will focus on improving Listener and making sure it works correctly with the other classes.
+
+1. **Integration:** Check that Listener works correctly with the final versions of Song, Podcast, and LinkedChain.
+2. **Queue design:** Discuss with the team whether Listener should continue using LinkedChain directly or interact through a separate Queue class.
+3. **Input validation:** Review additional edge cases and make sure invalid inputs are handled consistently.
+4. **Testing:** Add or revise tests if the other classes or public method signatures change.
+5. **Final testing:** Run the full application and JUnit tests after the team combines all the completed code.
+
+### Stretch Goals
+
+For the current prototype, I focused on completing the MVP rather than adding stretch goals.
+
+A Next/Skip feature would be a reasonable extension of the current playback system. I can work on connecting that feature to Listener if the team decides to include it.
+
+The team still needs to confirm which other stretch goals will be included or dropped from the final version.
+
+### Additional Tests
+
+Depending on the features added for the final project, I plan to test:
+- Skipping an item when the queue contains multiple items.
+- Skipping when the queue is empty.
+- Removing an item after other queue operations.
+- Invalid input during any newly added menu options.
+- Integration between Listener and the final Queue implementation, if that class is added.
+
+**Owner:** Seongjin Nam — Listener integration, input validation, and Listener tests.
+
+## Attribution
+
+### Seongjin Nam's Contributions
+
+| File | Contributor | Contribution |
+|---|---|---|
+| `Listener.java` | Seongjin Nam | GenAI-assisted implementation of console menu, media operations, input validation, and integration with LinkedChain; reviewed and tested in Eclipse. |
+| `ListenerTest.java` | Seongjin Nam | GenAI-assisted development of JUnit tests covering normal behavior, invalid input, and edge cases; executed and verified all 18 tests in Eclipse. |
+
+Other team members' class and test file contributions will be included in the complete team attribution table.
+
+### GenAI Usage
+
+I used ChatGPT to help generate and organize the Listener implementation, identify input-validation cases, and develop JUnit tests.
+
+GenAI assistance included suggestions for menu handling, error checking, queue operations, and test cases. I integrated the generated code into the team project, ran the application in Eclipse, and verified the JUnit results.
+
+The final Listener tests completed with 18 passing tests, 0 errors, and 0 failures.
