@@ -36,9 +36,13 @@ I used GenAI assistance while developing and reviewing the Listener implementati
 
 My responsiblity was creating the `Song` and `Podcast` classes and their methods.
 
-Originally making multiple constructors was a stretch goal but as I was progarmming it made more sense to make it as I was building the class.
+Originally making multiple constructors was a stretch goal but as I was programming it made more sense to make it as I was building the class.
 
 To make sure the toString worked for all objects if an object wasn't giving all 3 paramters the object would be assigmed values to allow the toString to work for all 3 constructors. 
+
+## SongTest and PodcastTest - Tuan Phan
+
+
 
 ### LinkedChain Changes
 
