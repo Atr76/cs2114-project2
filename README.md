@@ -35,11 +35,11 @@ I used GenAI assistance while developing and reviewing the Listener implementati
 
 ### LinkedChain Changes
 
-I did not directly modify the internal node structure of `LinkedChain.java`.
+The only change we made was adding an `add(index, item)` method. Allowing users to add items to a speciffic index.
 
 The Listener class uses the public methods provided by LinkedChain, including `add()`, `remove()`, `get()`, `size()`, `isEmpty()`, and `toArray()`.
 
-For position-based insertion, Listener uses the available `add(index, item)` method. For removing an item at a specific position, I used the public LinkedChain methods and a temporary chain to preserve the order of the remaining items.
+For removing an item at a specific position, I used the public LinkedChain methods and a temporary chain to preserve the order of the remaining items.
 
 ### Unknowns and Challenges
 
