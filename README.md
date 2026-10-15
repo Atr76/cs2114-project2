@@ -76,34 +76,46 @@ The current Listener prototype supports the main menu features, but it does not 
 
 ## Next Steps
 
-### Listener Development — Seongjin Nam
+### Remaining MVP Work
 
-My remaining work for the final project will focus on improving Listener and making sure it works correctly with the other classes.
+For the final project, our main goal is to combine everyone's work and make sure the entire application runs correctly.
 
-1. **Integration:** Check that Listener works correctly with the final versions of Song, Podcast, and LinkedChain.
-2. **Queue design:** Discuss with the team whether Listener should continue using LinkedChain directly or interact through a separate Queue class.
-3. **Input validation:** Review additional edge cases and make sure invalid inputs are handled consistently.
-4. **Testing:** Add or revise tests if the other classes or public method signatures change.
-5. **Final testing:** Run the full application and JUnit tests after the team combines all the completed code.
+1. **Class Integration:** Combine `Song`, `Podcast`, `Listener`, and `LinkedChain` and check that they work together correctly.
+2. **Queue Design:** Decide whether to use the separate Queue class from our original specification or continue using `LinkedChain` directly.
+3. **Input Validation:** Review invalid inputs, including empty titles, invalid lengths, invalid positions, and incorrect input types.
+4. **JUnit Testing:** Review the existing tests and add any missing normal and invalid-input cases for public methods.
+5. **Final Testing:** Run the complete application and all JUnit tests together and fix any remaining issues before the final submission.
 
 ### Stretch Goals
 
-For the current prototype, I focused on completing the MVP rather than adding stretch goals.
+Our main priority is completing and testing the MVP.
 
-A Next/Skip feature would be a reasonable extension of the current playback system. I can work on connecting that feature to Listener if the team decides to include it.
+- **Committed:** Next/Skip feature.
+- **Dropped:** Swapping songs, repeating media, and audiobook support.
 
-The team still needs to confirm which other stretch goals will be included or dropped from the final version.
+We decided to focus on the Next/Skip feature because it builds on our existing playback functionality and is manageable within the remaining development time.
 
 ### Additional Tests
 
-Depending on the features added for the final project, I plan to test:
-- Skipping an item when the queue contains multiple items.
-- Skipping when the queue is empty.
-- Removing an item after other queue operations.
-- Invalid input during any newly added menu options.
-- Integration between Listener and the final Queue implementation, if that class is added.
+For the final version, we plan to review or add tests for:
 
-**Owner:** Seongjin Nam — Listener integration, input validation, and Listener tests.
+- Adding and removing media from an empty queue.
+- Removing an item that does not exist.
+- Handling duplicate song titles.
+- Invalid titles, lengths, positions, and menu inputs.
+- Integration between Listener and the final storage implementation.
+- Skipping media from an empty or nonempty queue, if the Next/Skip feature is added.
+
+### Team Responsibilities
+
+| Team Member | Remaining Work |
+|---|---|
+| Seongjin Nam | Integrate Listener with the final classes, review input validation, and update Listener tests. |
+| Tuan Phan | Review SongTest and PodcastTest, add missing edge cases, and help verify integration. |
+| Aaron Ray | Review class compatibility, help resolve integration issues, and assist with final testing. |
+
+After combining our work, we will run the full application and all tests to verify that the final implementation meets the project requirements.
+
 
 ## Attribution
 
@@ -114,7 +126,6 @@ Depending on the features added for the final project, I plan to test:
 | `Listener.java` | Seongjin Nam | GenAI-assisted implementation of console menu, media operations, input validation, and integration with LinkedChain; reviewed and tested in Eclipse. |
 | `ListenerTest.java` | Seongjin Nam | GenAI-assisted development of JUnit tests covering normal behavior, invalid input, and edge cases; executed and verified all 18 tests in Eclipse. |
 
-Other team members' class and test file contributions will be included in the complete team attribution table.
 
 ### GenAI Usage
 
