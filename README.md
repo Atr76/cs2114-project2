@@ -52,13 +52,15 @@ For removing an item at a specific position, I used the public LinkedChain metho
 
 One challenge from our original scope was figuring out how to insert and remove media at specific positions without breaking the linked list.
 
-I handled this by using LinkedChain's public methods instead of directly accessing its nodes.
+We handled this by using LinkedChain's public methods instead of directly accessing its nodes.
 
 Another question was how to simulate playing media. I implemented the `play()` method so that it removes the first item from the queue and returns a message showing which item is being played.
 
 We also needed to decide how Listener should manage user input. I separated input validation into helper methods so that the menu code would be easier to organize.
 
 Searching for and editing an existing Song or Podcast is still something we need to work on if we include editing in the final version.
+
+Another challenge was deciding how to connect Listener with the queue implementation. For this prototype, I used LinkedChain directly, but we still need to decide whether to add the separate Queue class from our original specification. We plan to discuss this during final integration.
 
 ### Testing and Current Limitations
 
