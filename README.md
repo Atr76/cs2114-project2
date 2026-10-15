@@ -166,3 +166,5 @@ GenAI assistance included suggestions for menu handling, error checking, queue o
 The final Listener tests completed with 18 passing tests, 0 errors, and 0 failures.
 
 I, Aaron Ray, used the VSCode copliot to help write some of the code such as constructors.
+
+I, Tuan Phan, asked VSCode copilot if the test for each class properly covered all branches. I then added in appropriate test methods if there are any missing.
