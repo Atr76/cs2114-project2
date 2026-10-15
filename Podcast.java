@@ -39,6 +39,15 @@ public class Podcast {
     }
 
     /**
+     * Returns the title of the podcast.
+     *
+     * @return the title of the podcast
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
      * Compares this Podcast object with another Podcast object for equality based on the title.
      *
      * @param other the other Podcast object to compare with

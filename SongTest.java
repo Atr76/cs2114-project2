@@ -31,7 +31,6 @@ public class SongTest extends student.TestCase {
     }
 
     public void testToStringMethod() {
-        // Tests public String toString() formatting
         Song song = new Song("Thriller", "Michael Jackson", 5.57f);
         String expected = "Title: Thriller, Artist: Michael Jackson, Length: 5.57";
         assertEquals(expected, song.toString());
