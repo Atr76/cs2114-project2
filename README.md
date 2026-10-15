@@ -55,7 +55,7 @@ Searching for and editing an existing Song or Podcast is still something we need
 
 ### Testing and Current Limitations
 
-I created `ListenerTest.java` to test normal behavior and invalid input.
+We created `ListenerTest.java` to test normal behavior and invalid input.
 
 The tests cover:
 - Creating and resetting a queue.
@@ -70,6 +70,12 @@ The tests cover:
 - Handling incomplete user input.
 - Starting and quitting the program.
 
+We created `SongTest.java` and `PodcastTest.java` to test normal behavior and invalid input.
+
+The test cover:
+- All 3 different constructors
+- ToString method
+- the equals method that compares song and podcast titles
 All 18 Listener tests passed in Eclipse.
 
 The current Listener prototype supports the main menu features, but it does not yet support editing existing media items, swapping songs, repeating songs, or handling audiobooks. The separate Queue class from our specification also has not been integrated into this implementation.
@@ -125,7 +131,10 @@ After combining our work, we will run the full application and all tests to veri
 |---|---|---|
 | `Listener.java` | Seongjin Nam | GenAI-assisted implementation of console menu, media operations, input validation, and integration with LinkedChain; reviewed and tested in Eclipse. |
 | `ListenerTest.java` | Seongjin Nam | GenAI-assisted development of JUnit tests covering normal behavior, invalid input, and edge cases; executed and verified all 18 tests in Eclipse. |
-
+|  `Song.java` | Aaron Ray | Created base for the class and methods. Used the Ai in VScode to help make the different constructors|
+|`SongTest.java` | Tuan Phan | Created tests for the Song.java class|
+| `Podcast.java`| Aaron Ray | Created base for the class and method. Used the Ai in VScode to help make the different constructorss|
+| `PodcastTest.java` | Tuan Phan | Created tests for the Podcast.java class|
 
 ### GenAI Usage
 
@@ -134,3 +143,5 @@ I, Seongjin Nam, used ChatGPT to help generate and organize the Listener impleme
 GenAI assistance included suggestions for menu handling, error checking, queue operations, and test cases. I integrated the generated code into the team project, ran the application in Eclipse, and verified the JUnit results.
 
 The final Listener tests completed with 18 passing tests, 0 errors, and 0 failures.
+
+I, Aaron Ray, used the VSCode copliot to help write some of the code such as constructors.
