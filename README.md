@@ -151,10 +151,11 @@ After combining our work, we will run the full application and all tests to veri
 |---|---|---|
 | `Listener.java` | Seongjin Nam | GenAI-assisted implementation of console menu, media operations, input validation, and integration with LinkedChain; reviewed and tested in Eclipse. |
 | `ListenerTest.java` | Seongjin Nam | GenAI-assisted development of JUnit tests covering normal behavior, invalid input, and edge cases; executed and verified all 18 tests in Eclipse. |
-|  `Song.java` | Aaron Ray | Created base for the class and methods. Used the Ai in VScode to help make the different constructors|
+|  `Song.java` | Aaron Ray | Created base for the class and methods. Used the AI in VScode to help make the different constructors|
 |`SongTest.java` | Tuan Phan | Created tests for the Song.java class|
-| `Podcast.java`| Aaron Ray | Created base for the class and method. Used the Ai in VScode to help make the different constructorss|
+| `Podcast.java`| Aaron Ray | Created base for the class and method. Used the AI in VScode to help make the different constructorss|
 | `PodcastTest.java` | Tuan Phan | Created tests for the Podcast.java class|
+| `LinkedChainTest.java` | Tuan Phan | Created tests for the LinkedChain.java class and made sure it can handle invalid inputs |
 
 ### GenAI Usage
 
