@@ -32,6 +32,13 @@ One difference from our specification is that the current prototype stores a `Li
 I also implemented input validation in Listener, as planned in our specification. The program asks the user to try again when they enter an invalid menu option, an empty title, an invalid media length, or an invalid position. It also handles text entered where a number is expected.
 
 I used GenAI assistance while developing and reviewing the Listener implementation and its tests. I then integrated the code into Eclipse, ran the application, and checked the test results.
+## Song and Podcast Methods - Aaron Ray
+
+My responsiblity was creating the `Song` and `Podcast` classes and their methods.
+
+Originally making multiple constructors was a stretch goal but as I was progarmming it made more sense to make it as I was building the class.
+
+To make sure the toString worked for all objects if an object wasn't giving all 3 paramters the object would be assigmed values to allow the toString to work for all 3 constructors. 
 
 ### LinkedChain Changes
 
