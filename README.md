@@ -129,7 +129,7 @@ After combining our work, we will run the full application and all tests to veri
 
 ### GenAI Usage
 
-I used ChatGPT to help generate and organize the Listener implementation, identify input-validation cases, and develop JUnit tests.
+I, Seongjin Nam, used ChatGPT to help generate and organize the Listener implementation, identify input-validation cases, and develop JUnit tests.
 
 GenAI assistance included suggestions for menu handling, error checking, queue operations, and test cases. I integrated the generated code into the team project, ran the application in Eclipse, and verified the JUnit results.
 
