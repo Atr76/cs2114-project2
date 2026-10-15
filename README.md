@@ -134,8 +134,6 @@ After combining our work, we will run the full application and all tests to veri
 
 ## Attribution
 
-### Seongjin Nam's Contributions
-
 | File | Contributor | Contribution |
 |---|---|---|
 | `Listener.java` | Seongjin Nam | GenAI-assisted implementation of console menu, media operations, input validation, and integration with LinkedChain; reviewed and tested in Eclipse. |
