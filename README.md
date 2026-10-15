@@ -88,8 +88,17 @@ We created `SongTest.java` and `PodcastTest.java` to test normal behavior and in
 The test cover:
 - All 3 different constructors
 - ToString method
-- the equals method that compares song and podcast titles
+- The equals method that compares song and podcast titles
 All 18 Listener tests passed in Eclipse.
+
+We created the `LinkedChainTest.java` to test its methods and behavior including bad input.
+- Constructor and initial state
+- Front insertion, end insertion, and indexed insertion
+- Front removal and specific entry removal
+- Clearing the chain
+- Retrieving indexes
+- Contains and counting
+- Array conversion
 
 The current Listener prototype supports the main menu features, but it does not yet support editing existing media items, swapping songs, repeating songs, or handling audiobooks. The separate Queue class from our specification also has not been integrated into this implementation.
 
@@ -130,7 +139,7 @@ For the final version, we plan to review or add tests for:
 | Team Member | Remaining Work |
 |---|---|
 | Seongjin Nam | Integrate Listener with the final classes, review input validation, and update Listener tests. |
-| Tuan Phan | Review SongTest and PodcastTest, add missing edge cases, and help verify integration. |
+| Tuan Phan | Review SongTest and PodcastTest and LinkedChainTest, add missing edge cases, and help verify integration. |
 | Aaron Ray | Review class compatibility, help resolve integration issues, and assist with final testing. |
 
 After combining our work, we will run the full application and all tests to verify that the final implementation meets the project requirements.
