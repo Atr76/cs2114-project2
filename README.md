@@ -40,9 +40,9 @@ Originally making multiple constructors was a stretch goal but as I was programm
 
 To make sure the toString worked for all objects if an object wasn't giving all 3 paramters the object would be assigmed values to allow the toString to work for all 3 constructors. 
 
-## SongTest and PodcastTest - Tuan Phan
+## SongTest, PodcastTest, and LinkedChainTest - Tuan Phan
 
-
+My responsibility was creating the testing class for Song, Podcast, and LinkedChain. I made sure that each test ran successfully and each method was working as intended. I implemented try and catch blocks when applicable so that bad inputs and exceptions are handled properly.
 
 ### LinkedChain Changes
 
