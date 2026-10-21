@@ -2,8 +2,8 @@
 import java.util.Scanner;
 
 /**
- * Console interface for Play That Tune. LinkedChain stores the media; Listener
- * handles input and validation.
+ * Console interface for Play That Tune. LinkedChain stores the media, while
+ * Listener handles input, validation, and playback.
  */
 public class Listener
 {
@@ -11,27 +11,37 @@ public class Listener
     private final Scanner scanner;
     private boolean running;
 
-    /** Creates the interactive application. */
+    /**
+     * Creates the interactive application.
+     */
     public Listener()
     {
         this(new Scanner(System.in));
     }
 
 
-    /** Allows tests to supply simulated keyboard input. */
+    /**
+     * Allows tests to supply simulated keyboard input.
+     *
+     * @param input
+     *            the Scanner used for input
+     */
     public Listener(Scanner input)
     {
         if (input == null)
         {
             throw new IllegalArgumentException("Scanner cannot be null");
         }
+
         scanner = input;
         newQueue = new LinkedChain<>();
         running = true;
     }
 
 
-    /** Displays the available commands. */
+    /**
+     * Displays all available menu commands.
+     */
     public void printMenu()
     {
         System.out.println("===== Menu ======");
@@ -43,10 +53,15 @@ public class Listener
         System.out.println("6. View Queue");
         System.out.println("7. Play Next");
         System.out.println("8. Quit");
+        System.out.println("9. Skip Next");
     }
 
 
-    /** Creates and returns a new, empty queue. */
+    /**
+     * Creates and returns a new empty queue.
+     *
+     * @return the new LinkedChain
+     */
     public LinkedChain<Object> queue()
     {
         newQueue = new LinkedChain<>();
@@ -54,48 +69,92 @@ public class Listener
     }
 
 
-    /** Adds a Song or Podcast at the front; rejects null/other types. */
+    /**
+     * Adds a Song or Podcast to the front of the queue. Rejects null and
+     * unsupported object types.
+     *
+     * @param media
+     *            the media item
+     * @return true if successfully added
+     */
     public boolean add(Object media)
     {
         if (!(media instanceof Song) && !(media instanceof Podcast))
         {
             return false;
         }
+
         return newQueue.add(media);
     }
 
 
-    /** Removes the first matching object, if present. */
+    /**
+     * Removes the first matching object.
+     *
+     * @param media
+     *            the object to remove
+     * @return true if successfully removed
+     */
     public boolean remove(Object media)
     {
         if (media == null)
         {
             return false;
         }
+
         return newQueue.remove(media);
     }
 
 
-    /** Removes the first item and returns a simulated playback message. */
+    /**
+     * Removes the next media item and simulates playback.
+     *
+     * @return playback message
+     */
     public String play()
     {
         Object next = newQueue.remove();
+
         if (next == null)
         {
             return "Queue is empty. Nothing to play.";
         }
+
         return "Now playing: " + next;
     }
 
 
-    /** Keeps the interactive menu running until Quit or end of input. */
+    /**
+     * Skips the next queued media item without playing it. This feature was
+     * added as the project's stretch goal.
+     *
+     * @return description of skipped media or empty-queue message
+     */
+    public String skip()
+    {
+        Object skipped = newQueue.remove();
+
+        if (skipped == null)
+        {
+            return "Queue is empty. Nothing to skip.";
+        }
+
+        return "Skipped: " + skipped;
+    }
+
+
+    /**
+     * Runs the interactive menu until the user quits or the input ends.
+     */
     public void menu()
     {
         running = true;
+
         while (running && scanner.hasNextLine())
         {
             printMenu();
             System.out.print("Enter your choice: ");
+
             String answer = scanner.nextLine().trim();
 
             try
@@ -110,7 +169,12 @@ public class Listener
     }
 
 
-    /** Runs one menu command; interactive commands read from scanner. */
+    /**
+     * Processes the selected menu command.
+     *
+     * @param selection
+     *            the menu option
+     */
     public void menu(int selection)
     {
         switch (selection)
@@ -119,28 +183,40 @@ public class Listener
                 queue();
                 System.out.println("New queue created!");
                 break;
+
             case 2:
                 addSongFromInput();
                 break;
+
             case 3:
                 addPodcastFromInput();
                 break;
+
             case 4:
                 insertAtPosition();
                 break;
+
             case 5:
                 removeAtPosition();
                 break;
+
             case 6:
                 viewQueue();
                 break;
+
             case 7:
                 System.out.println(play());
                 break;
+
             case 8:
                 running = false;
                 System.out.println("Goodbye!");
                 break;
+
+            case 9:
+                System.out.println(skip());
+                break;
+
             default:
                 System.out.println("Invalid menu option. Please try again.");
                 break;
@@ -148,10 +224,13 @@ public class Listener
     }
 
 
-    /** Prompts for a Song and places it at the front of the queue. */
+    /**
+     * Reads a Song from user input and adds it to the queue.
+     */
     private void addSongFromInput()
     {
         Song song = readSong();
+
         if (song != null && add(song))
         {
             System.out.println("Song added successfully!");
@@ -159,10 +238,13 @@ public class Listener
     }
 
 
-    /** Prompts for a Podcast and places it at the front of the queue. */
+    /**
+     * Reads a Podcast from user input and adds it to the queue.
+     */
     private void addPodcastFromInput()
     {
         Podcast podcast = readPodcast();
+
         if (podcast != null && add(podcast))
         {
             System.out.println("Podcast added successfully!");
@@ -170,63 +252,89 @@ public class Listener
     }
 
 
-    /** Returns a Song after checking title, artist, and length. */
+    /**
+     * Reads and validates Song information.
+     *
+     * @return a valid Song or null if input ends
+     */
     private Song readSong()
     {
         String title = readNonEmpty("Song title: ");
+
         if (title == null)
         {
             return null;
         }
+
         String artist = readNonEmpty("Artist: ");
+
         if (artist == null)
         {
             return null;
         }
+
         Float length = readPositiveFloat("Length in minutes: ");
+
         if (length == null)
         {
             return null;
         }
+
         return new Song(title, artist, length);
     }
 
 
-    /** Returns a Podcast after checking title, episode, and length. */
+    /**
+     * Reads and validates Podcast information.
+     *
+     * @return a valid Podcast or null if input ends
+     */
     private Podcast readPodcast()
     {
         String title = readNonEmpty("Podcast title: ");
+
         if (title == null)
         {
             return null;
         }
+
         Integer episode = readIntegerInRange(
             "Episode number (1 or greater): ",
             1,
             Integer.MAX_VALUE);
+
         if (episode == null)
         {
             return null;
         }
+
         Float length = readPositiveFloat("Length in minutes: ");
+
         if (length == null)
         {
             return null;
         }
+
         return new Podcast(title, episode, length);
     }
 
 
-    /** Adds media at a 1-based position; LinkedChain checks the index. */
+    /**
+     * Inserts media at a user-selected 1-based position. Invalid positions are
+     * rejected and requested again.
+     */
     private void insertAtPosition()
     {
         Integer type =
             readIntegerInRange("Media type (1 = Song, 2 = Podcast): ", 1, 2);
+
         if (type == null)
         {
             return;
         }
+
         Object media = type == 1 ? readSong() : readPodcast();
+
         if (media == null)
         {
             return;
@@ -236,13 +344,16 @@ public class Listener
         {
             Integer position = readAnyInteger(
                 "Insert position (1 to " + (newQueue.size() + 1) + "): ");
+
             if (position == null)
             {
                 return;
             }
+
             try
             {
                 newQueue.add(position - 1, media);
+
                 System.out.println("Item inserted successfully!");
                 return;
             }
@@ -255,7 +366,8 @@ public class Listener
 
 
     /**
-     * Removes precisely the requested 1-based position, even with duplicates.
+     * Removes media at the selected 1-based position. Uses a temporary chain to
+     * preserve other entries, including entries with duplicate titles.
      */
     private void removeAtPosition()
     {
@@ -264,36 +376,39 @@ public class Listener
             System.out.println("Queue is empty. Nothing to remove.");
             return;
         }
+
         viewQueue();
 
         while (true)
         {
             Integer position = readAnyInteger(
                 "Remove position (1 to " + newQueue.size() + "): ");
+
             if (position == null)
             {
                 return;
             }
+
             try
             {
-                // get() validates the position through LinkedChain's public
-                // API.
                 Object selected = newQueue.get(position - 1);
 
-                // Temporarily save items before the selected one.
                 LinkedChain<Object> before = new LinkedChain<>();
+
                 for (int i = 1; i < position; i++)
                 {
                     before.add(newQueue.remove());
                 }
 
-                newQueue.remove(); // Remove the selected item at the front.
+                // Remove the selected item.
+                newQueue.remove();
 
-                // Put earlier items back in their original order.
+                // Restore earlier items in original order.
                 while (!before.isEmpty())
                 {
                     newQueue.add(before.remove());
                 }
+
                 System.out.println("Removed: " + selected);
                 return;
             }
@@ -305,7 +420,9 @@ public class Listener
     }
 
 
-    /** Prints all queued items with positions starting at 1. */
+    /**
+     * Displays all current queue items.
+     */
     private void viewQueue()
     {
         if (newQueue.isEmpty())
@@ -313,8 +430,11 @@ public class Listener
             System.out.println("Queue is empty.");
             return;
         }
+
         System.out.println("===== Current Queue =====");
+
         Object[] items = newQueue.toArray(new Object[newQueue.size()]);
+
         for (int i = 0; i < items.length; i++)
         {
             System.out.println((i + 1) + ". " + items[i]);
@@ -322,36 +442,54 @@ public class Listener
     }
 
 
-    /** Re-prompts for nonblank text; also rejects the literal word 'null'. */
+    /**
+     * Reads nonempty text. Rejects blank strings and the literal word "null".
+     *
+     * @param prompt
+     *            the input prompt
+     * @return valid text or null if input ends
+     */
     private String readNonEmpty(String prompt)
     {
         while (true)
         {
             System.out.print(prompt);
+
             if (!scanner.hasNextLine())
             {
                 return null;
             }
+
             String value = scanner.nextLine().trim();
+
             if (!value.isEmpty() && !value.equalsIgnoreCase("null"))
             {
                 return value;
             }
+
             System.out.println("Input cannot be empty or null. Try again.");
         }
     }
 
 
-    /** Re-prompts until a whole number is given. */
+    /**
+     * Reads a whole number. Rejects text and decimal numbers.
+     *
+     * @param prompt
+     *            the input prompt
+     * @return integer or null if input ends
+     */
     private Integer readAnyInteger(String prompt)
     {
         while (true)
         {
             System.out.print(prompt);
+
             if (!scanner.hasNextLine())
             {
                 return null;
             }
+
             try
             {
                 return Integer.parseInt(scanner.nextLine().trim());
@@ -365,38 +503,61 @@ public class Listener
     }
 
 
-    /** Re-prompts until a whole number within a specified range is given. */
+    /**
+     * Reads an integer within a valid range.
+     *
+     * @param prompt
+     *            the input prompt
+     * @param min
+     *            minimum accepted value
+     * @param max
+     *            maximum accepted value
+     * @return valid integer or null if input ends
+     */
     private Integer readIntegerInRange(String prompt, int min, int max)
     {
         while (true)
         {
             Integer value = readAnyInteger(prompt);
+
             if (value == null)
             {
                 return null;
             }
+
             if (value >= min && value <= max)
             {
                 return value;
             }
+
             System.out.println("Invalid number. Please try again.");
         }
     }
 
 
-    /** Re-prompts until a finite positive length is given. */
+    /**
+     * Reads a finite positive float. Rejects zero, negatives, NaN, Infinity,
+     * and text.
+     *
+     * @param prompt
+     *            the input prompt
+     * @return valid positive float or null if input ends
+     */
     private Float readPositiveFloat(String prompt)
     {
         while (true)
         {
             System.out.print(prompt);
+
             if (!scanner.hasNextLine())
             {
                 return null;
             }
+
             try
             {
                 float length = Float.parseFloat(scanner.nextLine().trim());
+
                 if (Float.isFinite(length) && length > 0)
                 {
                     return length;
@@ -404,14 +565,20 @@ public class Listener
             }
             catch (NumberFormatException e)
             {
-                // Use the same message for text and invalid numbers.
+                // Invalid text is handled below.
             }
+
             System.out.println("Invalid length. Enter a positive number.");
         }
     }
 
 
-    /** Starts Play That Tune. */
+    /**
+     * Starts the Play That Tune application.
+     *
+     * @param args
+     *            command-line arguments
+     */
     public static void main(String[] args)
     {
         Listener listener = new Listener();
