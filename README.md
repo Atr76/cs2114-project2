@@ -63,4 +63,5 @@ The feature uses the existing `LinkedChain.remove()` method.
 ## GenAI Usage
 
 **Seongjin Nam:** I used ChatGPT to assist with implementing and reviewing the Listener class, adding the Skip Next feature, reviewing input validation, and developing unit tests. I reviewed and integrated the suggested code into the project.
+
 **Tuan Phan:** I used VS Code Copilot to review test coverage and identify missing branches. I then added appropriate test methods where needed.
